@@ -53,6 +53,11 @@ func (p *NamespaceTransformerPlugin) Transform(m resmap.ResMap) error {
 			// Don't mutate empty objects?
 			continue
 		}
+		if orig, err := r.GetOrigin(); err == nil && orig != nil {
+			if orig.ConfiguredBy.Kind == "HelmChartInflationGenerator" {
+				continue
+			}
+		}
 		r.StorePreviousId()
 		if err := r.ApplyFilter(namespace.Filter{
 			Namespace:              p.Namespace,
