@@ -166,6 +166,9 @@ var generatorConfigurators = map[builtinhelpers.BuiltinPluginType]func(
 		for _, chart := range kt.kustomization.HelmCharts {
 			c.HelmGlobals = globals
 			c.HelmChart = chart
+			if c.HelmChart.Namespace == "" {
+				c.HelmChart.Namespace = kt.kustomization.Namespace
+			}
 			p := f()
 			if err = kt.configureBuiltinPlugin(p, c, bpt); err != nil {
 				return nil, err
