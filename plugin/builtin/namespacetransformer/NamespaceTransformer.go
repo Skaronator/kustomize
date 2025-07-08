@@ -58,6 +58,7 @@ func (p *plugin) Transform(m resmap.ResMap) error {
 		}
 		if origin, err := r.GetOrigin(); err == nil && origin != nil {
 			if origin.ConfiguredBy.Kind == "HelmChartInflationGenerator" {
+				// Don't apply namespace on Helm generated manifest. Helm should take care of it.
 				continue
 			}
 		}
