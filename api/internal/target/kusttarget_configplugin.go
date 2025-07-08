@@ -44,26 +44,20 @@ func (kt *KustTarget) configureBuiltinGenerators() (
 			return nil, err
 		}
 
-		var generatorOrigin *resource.Origin
-		if kt.origin != nil {
-			generatorOrigin = &resource.Origin{
-				Repo:         kt.origin.Repo,
-				Ref:          kt.origin.Ref,
-				ConfiguredIn: filepath.Join(kt.origin.Path, kt.kustFileName),
-				ConfiguredBy: yaml.ResourceIdentifier{
-					TypeMeta: yaml.TypeMeta{
-						APIVersion: "builtin",
-						Kind:       bpt.String(),
-					},
-				},
-			}
-		} else {
-			generatorOrigin = &resource.Origin{
-				ConfiguredBy: yaml.ResourceIdentifier{
-					TypeMeta: yaml.TypeMeta{APIVersion: "builtin", Kind: bpt.String()},
-				},
-			}
-		}
+               var generatorOrigin *resource.Origin
+               if kt.origin != nil {
+                       generatorOrigin = &resource.Origin{
+                               Repo:         kt.origin.Repo,
+                               Ref:          kt.origin.Ref,
+                               ConfiguredIn: filepath.Join(kt.origin.Path, kt.kustFileName),
+                               ConfiguredBy: yaml.ResourceIdentifier{
+                                       TypeMeta: yaml.TypeMeta{
+                                               APIVersion: "builtin",
+                                               Kind:       bpt.String(),
+                                       },
+                               },
+                       }
+               }
 
 		for i := range r {
 			result = append(result, &resmap.GeneratorWithProperties{Generator: r[i], Origin: generatorOrigin})
@@ -93,26 +87,20 @@ func (kt *KustTarget) configureBuiltinTransformers(
 		if err != nil {
 			return nil, err
 		}
-		var transformerOrigin *resource.Origin
-		if kt.origin != nil {
-			transformerOrigin = &resource.Origin{
-				Repo:         kt.origin.Repo,
-				Ref:          kt.origin.Ref,
-				ConfiguredIn: filepath.Join(kt.origin.Path, kt.kustFileName),
-				ConfiguredBy: yaml.ResourceIdentifier{
-					TypeMeta: yaml.TypeMeta{
-						APIVersion: "builtin",
-						Kind:       bpt.String(),
-					},
-				},
-			}
-		} else {
-			transformerOrigin = &resource.Origin{
-				ConfiguredBy: yaml.ResourceIdentifier{
-					TypeMeta: yaml.TypeMeta{APIVersion: "builtin", Kind: bpt.String()},
-				},
-			}
-		}
+               var transformerOrigin *resource.Origin
+               if kt.origin != nil {
+                       transformerOrigin = &resource.Origin{
+                               Repo:         kt.origin.Repo,
+                               Ref:          kt.origin.Ref,
+                               ConfiguredIn: filepath.Join(kt.origin.Path, kt.kustFileName),
+                               ConfiguredBy: yaml.ResourceIdentifier{
+                                       TypeMeta: yaml.TypeMeta{
+                                               APIVersion: "builtin",
+                                               Kind:       bpt.String(),
+                                       },
+                               },
+                       }
+               }
 		for i := range r {
 			result = append(result, &resmap.TransformerWithProperties{Transformer: r[i], Origin: transformerOrigin})
 		}
