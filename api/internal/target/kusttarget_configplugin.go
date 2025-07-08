@@ -57,6 +57,12 @@ func (kt *KustTarget) configureBuiltinGenerators() (
 					},
 				},
 			}
+		} else {
+			generatorOrigin = &resource.Origin{
+				ConfiguredBy: yaml.ResourceIdentifier{
+					TypeMeta: yaml.TypeMeta{APIVersion: "builtin", Kind: bpt.String()},
+				},
+			}
 		}
 
 		for i := range r {
@@ -98,6 +104,12 @@ func (kt *KustTarget) configureBuiltinTransformers(
 						APIVersion: "builtin",
 						Kind:       bpt.String(),
 					},
+				},
+			}
+		} else {
+			transformerOrigin = &resource.Origin{
+				ConfiguredBy: yaml.ResourceIdentifier{
+					TypeMeta: yaml.TypeMeta{APIVersion: "builtin", Kind: bpt.String()},
 				},
 			}
 		}
