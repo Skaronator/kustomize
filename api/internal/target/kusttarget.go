@@ -127,11 +127,7 @@ func (kt *KustTarget) MakeCustomizedResMap() (resmap.ResMap, error) {
 }
 
 func (kt *KustTarget) makeCustomizedResMap() (resmap.ResMap, error) {
-	var origin *resource.Origin
-	if len(kt.kustomization.BuildMetadata) != 0 {
-		origin = &resource.Origin{}
-	}
-	kt.origin = origin
+	kt.origin = &resource.Origin{}
 	ra, err := kt.AccumulateTarget()
 	if err != nil {
 		return nil, err
